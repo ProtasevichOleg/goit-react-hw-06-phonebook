@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import Filter from './Filter';
-import Layout from './layout';
+import Layout from './Layout';
 import { MainTitle, SubTitle } from './Titles';
 import useLocalStorage from 'hooks/useLocalStorage';
 
