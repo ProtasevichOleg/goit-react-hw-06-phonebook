@@ -1,33 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from 'redux/store';
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'components/GlobalStyle';
 import App from 'components/App';
-
-const theme = {
-  colors: {
-    label: '#000000',
-    item: {
-      border: '#ccc',
-    },
-    input: {
-      border: '#ccc',
-    },
-    button: {
-      background: {
-        default: '#3f51b5',
-        hover: '#303f9f',
-      },
-      text: '#fff',
-    },
-  },
-};
+import theme from 'assets/theme';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <App />
+      <Provider store={store}>
+        <PersistGate persistor={persistor}>
+          <App />
+        </PersistGate>
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>
 );

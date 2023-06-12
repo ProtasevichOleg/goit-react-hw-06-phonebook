@@ -5,7 +5,7 @@ export const Item = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border: 1px solid ${({ theme }) => theme.colors.item.border};
+  border: 1px solid ${({ theme }) => theme.colors.itemBorder};
   border-radius: 5px;
   margin-bottom: 10px;
 `;
@@ -14,11 +14,11 @@ export const DeleteButton = styled.button`
   padding: 5px;
   border-radius: 5px;
   border: none;
-  background-color: ${({ theme }) => theme.colors.button.background.default};
-  color: ${({ theme }) => theme.colors.button.text};
+  background-color: ${({ theme }) => theme.colors.buttonBackgroundDefault};
+  color: ${({ theme }) => theme.colors.buttonText};
   cursor: pointer;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.button.background.hover};
+    background-color: ${({ theme }) => theme.colors.buttonBackgroundHover};
   }
 `;

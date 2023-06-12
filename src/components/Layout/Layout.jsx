@@ -2,7 +2,6 @@ import {
   Container,
   Header,
   Nav,
-  //   NavLinkStyled,
   Main,
   Footer,
   Copyright,
@@ -12,7 +11,7 @@ const Layout = ({ children }) => {
   return (
     <Container>
       <Header>
-        <Nav></Nav>
+        <Nav>PHONEBOOK</Nav>
       </Header>
       <Main>{children}</Main>
       <Footer>

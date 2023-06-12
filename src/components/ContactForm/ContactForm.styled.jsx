@@ -22,7 +22,7 @@ export const Span = styled.span`
 export const Input = styled.input`
   padding: 5px;
   border-radius: 5px;
-  border: 1px solid ${({ theme }) => theme.colors.input.border};
+  border: 1px solid ${({ theme }) => theme.colors.inputBorder};
   width: 100%;
   box-sizing: border-box;
 `;
@@ -32,13 +32,13 @@ export const SubmitButton = styled.button`
   padding: 5px 10px;
   border-radius: 5px;
   border: none;
-  background-color: ${({ theme }) => theme.colors.button.background.default};
-  color: ${({ theme }) => theme.colors.button.text};
+  background-color: ${({ theme }) => theme.colors.buttonBackgroundDefault};
+  color: ${({ theme }) => theme.colors.buttonText};
   cursor: pointer;
   width: 100%;
   box-sizing: border-box;
 
   &:hover {
-    background-color: ${({ theme }) => theme.colors.button.background.hover};
+    background-color: ${({ theme }) => theme.colors.buttonBackgroundHover};
   }
 `;

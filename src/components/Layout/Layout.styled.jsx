@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-// import { NavLink } from 'react-router-dom';
 
 export const Container = styled.div`
   display: flex;
@@ -9,7 +8,8 @@ export const Container = styled.div`
 
 export const Header = styled.header`
   padding: 20px;
-  background-color: ${props => props.theme.colors.LayoutBackground};
+  background-color: ${props => props.theme.colors.layoutBackground};
+  color: ${props => props.theme.colors.layoutText};
 `;
 
 export const Nav = styled.nav`
@@ -20,30 +20,6 @@ export const Nav = styled.nav`
   gap: 20px;
   font-size: 14px;
 `;
-
-// export const NavLinkStyled = styled(NavLink)`
-//   position: relative;
-//   text-decoration: none;
-//   color: ${props => props.theme.colors.layoutText};
-
-//   &:hover {
-//     color: ${props => props.theme.colors.layoutTextActive};
-//   }
-
-//   &.active {
-//     color: ${props => props.theme.colors.layoutTextActive};
-
-//     &::after {
-//       content: '';
-//       position: absolute;
-//       bottom: -5px;
-//       left: 0;
-//       width: 100%;
-//       height: 2px;
-//       background-color: ${props => props.theme.colors.layoutTextActive};
-//     }
-//   }
-// `;
 
 export const Main = styled.main`
   flex-grow: 1;
@@ -60,7 +36,7 @@ export const Footer = styled.footer`
   align-items: center;
 
   padding: 20px;
-  background-color: ${props => props.theme.colors.LayoutBackground};
+  background-color: ${props => props.theme.colors.layoutBackground};
 `;
 
 export const Copyright = styled.p`

@@ -1,10 +1,17 @@
-// ContactForm.jsx
-
 import { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/phonebookSlice';
+import { nanoid } from 'nanoid';
 import { Form, Label, Input, Span, SubmitButton } from './ContactForm.styled';
+import {
+  nameValidationMessage,
+  numberValidationMessage,
+} from 'assets/validationMessages';
 
-const ContactForm = ({ onSubmit }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector(state => state.phonebook.contacts);
+
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -18,19 +25,37 @@ const ContactForm = ({ onSubmit }) => {
     setNumber('');
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
-    if (onSubmit(name, number)) {
-      resetState();
+  const valueExists = (key, value) => {
+    if (key === 'name') {
+      const normalizedValue = value.toLowerCase();
+      return contacts.find(
+        contact => contact[key].toLowerCase() === normalizedValue
+      );
     }
+
+    return contacts.find(contact => contact[key] === value);
   };
 
-  const validation = {
-    nameValidationMessage:
-      'Name may contain only letters, apostrophe, dash and spaces.' +
-      "For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan",
-    numberValidationMessage:
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +',
+  const handleSubmit = event => {
+    event.preventDefault();
+    if (valueExists('name', name)) {
+      alert(`${name} вже є в контактах.`);
+      return;
+    }
+
+    if (valueExists('number', number)) {
+      alert(`Номер ${number} вже використовується.`);
+      return;
+    }
+
+    const newContact = {
+      name,
+      number,
+      id: nanoid(),
+    };
+
+    dispatch(addContact(newContact));
+    resetState();
   };
 
   return (
@@ -41,7 +66,7 @@ const ContactForm = ({ onSubmit }) => {
           type="text"
           name="name"
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-          title={validation.nameValidationMessage}
+          title={nameValidationMessage}
           value={name}
           onChange={handleChange}
           required
@@ -53,7 +78,7 @@ const ContactForm = ({ onSubmit }) => {
           type="tel"
           name="number"
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-          title={validation.numberValidationMessage}
+          title={numberValidationMessage}
           value={number}
           onChange={handleChange}
           required
@@ -62,10 +87,6 @@ const ContactForm = ({ onSubmit }) => {
       <SubmitButton type="submit">Add contact</SubmitButton>
     </Form>
   );
-};
-
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default ContactForm;
